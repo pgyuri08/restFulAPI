@@ -1,0 +1,30 @@
+<h3><a class="btn btn-secondary" href="/members"><i class="fa fa-plus"></i> Create New</a> Contacts</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <!--<th>ID</th>-->
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>IP address</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each list}}
+      <tr>
+        <!--<td>{{this._id}}</td>-->
+        <td>{{this.first_name}}</td>
+        <td>{{this.last_name}}</td>
+        <td>{{this.gender}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.ip_address}}</td>
+        <td>
+          <a href="/members/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+          <a><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
