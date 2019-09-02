@@ -2,6 +2,7 @@ const express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
 const Members = mongoose.model('Members');
+mongoose.set('useFindAndModify', false);
 let newId;
 
 
@@ -22,7 +23,10 @@ router.get('/',(req, res)=>{
 
 
 router.post('/',(req, res)=>{
-  insertRecord(req, res);
+  if (req.body._id == '')
+    insertRecord(req, res);
+    else
+    updateRecord(req,res);
 });
 
 function insertRecord(req,res){
@@ -41,6 +45,23 @@ function insertRecord(req,res){
       //all the inserted contacts record will be listed
     else {
       console.log('Error during record insertion : ' + err) //if there is an error it will be printed here
+    }
+  });
+}
+
+function updateRecord(req, res) {
+  Members.findByIdAndUpdate({ _id: req.body.id }, req.body, { new: true}, (err, doc) => {
+    if (!err) {res.redirect('members/list');}
+    else {
+      if (err.name == 'ValidationError') {
+        handleValidationError(err, req.body);
+        res.render("members/addOrEdit", {
+          viewTitle: "Update Contact",
+          members: req.body
+        });
+      }
+      else
+          console.log('Error during record plate : ' + err)
     }
   });
 }
@@ -67,22 +88,9 @@ router.get('/:id',(req, res, next) => {
       res.render("members/addOrEdit", {
         viewTitle: "Update Contact",
         members: doc
-      // res.status(200).json(doc)
       });
+      // res.status(200).json(doc)
     });
 });
-
-
-
-//   Members.find(req.params.userId, (err, doc) => {
-//       if (!err) {
-//         console.log(req.params.userId)
-//         res.render("members/addOrEdit", {
-//           viewTitle: "Update Contact",
-//           members: doc
-//         });
-//       }
-//     });
-// });
 
 module.exports = router;
