@@ -9,10 +9,9 @@ var membersSchema = new mongoose.Schema({
     type: String,
     required: 'This field is required.'
   },
-  // id: {
-  //   type: String,
-  //   required: 'This field is required.'
-  // },
+  userId: {
+    type: Number
+  },
   ip_address: {
     type: String,
     required: 'This field is required.'

@@ -2,7 +2,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <!--<th>ID</th>-->
       <th>First Name</th>
       <th>Last Name</th>
       <th>Gender</th>
@@ -14,14 +13,13 @@
   <tbody>
     {{#each list}}
       <tr>
-        <!--<td>{{this._id}}</td>-->
         <td>{{this.first_name}}</td>
         <td>{{this.last_name}}</td>
         <td>{{this.gender}}</td>
         <td>{{this.email}}</td>
         <td>{{this.ip_address}}</td>
         <td>
-          <a href="/members/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+          <a href="/members/{{this.id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
           <a><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
         </td>
       </tr>
