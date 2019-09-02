@@ -2,6 +2,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>User ID</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Gender</th>
@@ -13,6 +14,7 @@
   <tbody>
     {{#each list}}
       <tr>
+        <td>{{this.userId}}</td>
         <td>{{this.first_name}}</td>
         <td>{{this.last_name}}</td>
         <td>{{this.gender}}</td>

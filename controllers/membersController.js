@@ -58,15 +58,31 @@ router.get('/list',(req, res)=>{
   });
 });
 
-router.get('/:id',(req, res)=>{
-  Members.findById(req.params.id, (err, doc) => {
-      if (!err) {
-        res.render("members/addOrEdit", {
-          viewTitle: "Update Contact",
-          contacts: doc
-        });
-      }
+router.get('/:id',(req, res, next) => {
+  const id = req.params.id;
+  Members.findById(id)
+    .exec()
+    .then(doc => {
+      console.log(doc)
+      res.render("members/addOrEdit", {
+        viewTitle: "Update Contact",
+        members: doc
+      // res.status(200).json(doc)
+      });
     });
 });
+
+
+
+//   Members.find(req.params.userId, (err, doc) => {
+//       if (!err) {
+//         console.log(req.params.userId)
+//         res.render("members/addOrEdit", {
+//           viewTitle: "Update Contact",
+//           members: doc
+//         });
+//       }
+//     });
+// });
 
 module.exports = router;

@@ -1,11 +1,8 @@
 <h3>{{viewTitle}}</h3>
 
 <form action="/members" method="POST" autocomplete="off">{{!--we will use an action attribute here we provide a url inside to handle post data--}}
-<input type="hidden" name="id" value="{{members.id}}">
-    {{!-- <div class="form-group">
-      <label>ID</label>
-      <input type="text" class="form-control" name="id" placeholder="ID">
-    </div> --}}
+<input type="hidden" name="id" value="{{members._id}}">
+<input type="hidden" name="userId" value="{{members.userId}}">
     <div class="form-group">
       <label>First Name</label>
       <input type="text" class="form-control" name="first_name" placeholder="First Name">
