@@ -23,7 +23,7 @@ router.get('/',(req, res)=>{
 
 
 router.post('/',(req, res)=>{
-  if (req.body._id == '')
+  if (req.body.id == '')
     insertRecord(req, res);
     else
     updateRecord(req,res);
@@ -91,6 +91,15 @@ router.get('/:id',(req, res, next) => {
       });
       // res.status(200).json(doc)
     });
+});
+
+router.get('/delete/:id', (req, res) => {
+  Members.findByIdAndRemove({_id: req.params.id}, (err, doc) => {
+    if (!err) {
+      res.redirect('/members/list');
+    }
+    else {console.log('Error in member delete :' + err); }
+  });
 });
 
 module.exports = router;

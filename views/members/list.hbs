@@ -20,7 +20,7 @@
         <td>{{this.ip_address}}</td>
         <td>
           <a href="/members/{{this.id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-          <a><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+          <a href="/members/delete/{{this.id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
         </td>
       </tr>
     {{/each}}
